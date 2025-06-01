@@ -17,19 +17,18 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Install dependencies
+      - name: Install CadQuery
         run: |
-          python -m pip install --upgrade pip
-          pip install pythonocc-core
+          pip install cadquery
 
-      - name: Simplify STEP file
+      - name: Run Simplifier
         run: |
           python simplify_step.py
 
-      - name: Commit simplified file
+      - name: Commit simplified STEP
         run: |
           git config user.name 'github-actions'
-          git config user.email 'github-actions@github.com'
+          git config user.email 'actions@github.com'
           git add .
           git commit -m 'Add simplified STEP file'
           git push
